@@ -85,7 +85,7 @@ class CoinAcceptor:
 
   #Get all coin IDs
   msg = Message(src=1,dst=self.addr,header=Message.HEADER_REQ_COINID)
-  for x in range(1,9):
+  for x in range(1,17):
    msg.data=struct.pack('B',x)
    response = self.iface.send(msg)
    self._supportedcoins.append(Coin(response.data))
