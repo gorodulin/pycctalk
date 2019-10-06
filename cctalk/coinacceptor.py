@@ -64,13 +64,20 @@ class CoinAcceptor:
 
  def onCoinAccept(self,coin):
   pass
+ 
+ def onError(self,err):
+  pass
+ 
  def __onAccept(self,coinnumid,output):
   self.__acceptedcoins += 1
   self.onCoinAccept(self._supportedcoins[coinnumid])
 #  print('[{}] Coin {} into {}'.format(self.events,coinnumid,output) )
 #  print(self._supportedcoins[coinnumid])
+ 
  def __onError(self,err):
-  print('[{}] Error {}'.format(self.events,err))
+  #print('[{}] Error {}'.format(self.events,err))
+  self.onError(err)
+  
  def init(self):
   #Get Manufactur
   r = self.iface.send(Message(src=1,dst=self.addr,header=Message.HEADER_REQ_MANUFACTURER_ID))
